@@ -1,0 +1,8 @@
+esphome:
+  name: test_rp2040
+  project:
+    name: esphome.example-project-rp2040
+    version: "3.5.1"
+
+rp2040:
+  board: rpipicow
