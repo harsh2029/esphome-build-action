@@ -117,6 +117,8 @@ class Config:
 
     def source_ota_bin(self, elf: Path) -> Path:
         """Get the source OTA binary path."""
+        if self.platform == "bk72xx":
+            return elf.with_name("firmware.uf2")
         return elf.with_name("firmware.ota.bin")
 
 
@@ -216,6 +218,9 @@ def generate_manifest_part(
             break
         if define == "USE_RP2040":
             chip_family = "RP2040"
+            break
+        if define == "USE_BK72XX":
+            chip_family = "BK72XX"
             break
         if m := re.match(r"USE_ESP32_VARIANT_(\w+)", define):
             chip_family = m.group(1)
