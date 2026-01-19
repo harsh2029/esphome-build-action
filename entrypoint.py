@@ -97,7 +97,7 @@ class Config:
 
     def dest_factory_bin(self, file_base: Path) -> Path:
         """Get the destination factory binary path."""
-        if self.platform == "rp2040":
+        if self.platform == "rp2040" or self.platform == "bk72xx":
             return file_base / f"{self.name}.uf2"
         return file_base / f"{self.name}.factory.bin"
 
@@ -111,7 +111,7 @@ class Config:
 
     def source_factory_bin(self, elf: Path) -> Path:
         """Get the source factory binary path."""
-        if self.platform == "rp2040":
+        if self.platform == "rp2040" or self.platform == "bk72xx":
             return elf.with_name("firmware.uf2")
         return elf.with_name("firmware.factory.bin")
 
@@ -150,6 +150,8 @@ def get_config(filename: Path, outputs_file: str | None) -> tuple[Config | None,
         platform = "esp8266"
     elif "rp2040" in config:
         platform = "rp2040"
+    elif "bk72xx" in config:
+        platform = "bk72xx"
 
     name = f"{original_name}-{platform}"
 
