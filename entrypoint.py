@@ -155,7 +155,7 @@ def get_config(filename: Path, outputs_file: str | None) -> tuple[Config | None,
     elif "bk72xx" in config:
         platform = "bk72xx"
 
-    name = f"{original_name}-{platform}"
+    name = f"{original_name}"
 
     if outputs_file:
         with open(outputs_file, "a", encoding="utf-8") as output:
